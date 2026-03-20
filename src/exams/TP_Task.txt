@@ -1,0 +1,13 @@
+Ukoly:
+Zpracovat vsech 50 souboru se zaznamy.
+
+Na souborech pracuje 5 vlaken, pracuje se v ThreadPoolu.
+Kazdy Reading ma format 'name/id,value'
+Pokud neni value v rozsahu [-20000,20000], neni platna.
+Pokud Reading je neplatny, je logovan do invalidReadings.
+ -hlida se, v jakem souboru a na jakem radku je invalidReading
+ -pokud je invalidReading *neni* pak v readings
+V opacnem pripade je klasicky vlozen do listu vsech zaznamu.
+
+Na konci programu vypiste, kolik cteni bylo celkem, kolik invalid.
+Dale vypiste do konzole vsechna invalidReadings

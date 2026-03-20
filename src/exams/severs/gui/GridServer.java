@@ -7,6 +7,10 @@ public class GridServer {
     private static final int PORT = 5555;
     private static final int SIZE = 10;
 
+    private Socket socket;
+    private BufferedReader in;
+    private PrintWriter out;
+
     private final boolean[][] reserved = new boolean[SIZE][SIZE];
     private final Set<PrintWriter> clientOutputs = Collections.synchronizedSet(new HashSet<>());
 

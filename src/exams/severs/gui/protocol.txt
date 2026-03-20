@@ -1,0 +1,8 @@
+Client mess:
+    /connect
+    /dig x y
+
+Server mess:
+    /gamestarted true/false
+    /reveal empty/treasure x y
+    /restart

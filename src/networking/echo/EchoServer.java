@@ -12,11 +12,11 @@ public class EchoServer {
         int port = 11111;
         System.out.println("Spousti se server na portu " + port);
 
-        try(ServerSocket serverSocket = new ServerSocket(port)){
+        try (ServerSocket serverSocket = new ServerSocket(port)){
             System.out.println("Server posloucha...");
 
-            try(Socket client = serverSocket.accept()) {
-                System.out.println("Pripojil se: " + client.getInetAddress() + ":" + client.getPort());
+            try(Socket client = serverSocket.accept()){
+                System.out.println("Pripojil se " + client.getInetAddress());
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
@@ -25,14 +25,11 @@ public class EchoServer {
                 String line;
                 while ((line = reader.readLine()) != null){
                     System.out.println("Od klienta prislo: " + line);
-                    pw.println("ECHO:"+line);
+                    pw.println("ECHO:" + line);
                 }
-                System.out.println("Klient se odpojil");
             }
-
-        }catch (IOException e){
-            System.out.println("Chyba pri praci: " + e.getMessage());
+        } catch (RuntimeException | IOException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("Happy ending");
     }
 }

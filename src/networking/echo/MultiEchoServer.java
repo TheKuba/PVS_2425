@@ -41,7 +41,7 @@ public class MultiEchoServer {
 
             while ((received = br.readLine()) != null){
                 System.out.println(clientSocket.getInetAddress()+":"
-                + clientSocket.getPort() + " posila: " + received);
+                        + clientSocket.getPort() + " posila: " + received);
 
                 if ("quit".equalsIgnoreCase(received)){
                     System.out.println(clientSocket.getInetAddress()+":"

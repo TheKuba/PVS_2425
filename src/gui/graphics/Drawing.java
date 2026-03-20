@@ -36,7 +36,8 @@ class Canvas extends JPanel {
 
 //        drawBasics(g2);
 //        drawShapes(g2);
-        drawArrow(g2, 100, 100, 500, 200, 40);
+//        drawArrow(g2, 100, 100, 500, 200, 40);
+        drawHeh(g2);
     }
 
     void drawBasics(Graphics2D g2){
@@ -129,5 +130,29 @@ class Canvas extends JPanel {
         }
         star.closePath();
         g.draw(star);
+    }
+    void drawHeh (Graphics2D g2) {
+        int x = 200;
+        int y = 200;
+        int len = 50;
+        Path2D shape = new Path2D.Double();
+
+        shape.moveTo(x, y);
+        shape.lineTo(x + len, y + len);
+        shape.lineTo(x + len, y - len);
+
+        shape.moveTo(x, y);
+        shape.lineTo(x + len, y - len);
+        shape.lineTo(x - len, y - len);
+
+        shape.moveTo(x, y);
+        shape.lineTo(x - len, y - len);
+        shape.lineTo(x - len, y + len);
+
+        shape.moveTo(x, y);
+        shape.lineTo(x - len, y + len);
+        shape.lineTo(x + len, y + len);
+//        shape.closePath();
+        g2.draw(shape);
     }
 }

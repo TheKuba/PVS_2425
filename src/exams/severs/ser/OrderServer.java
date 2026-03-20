@@ -33,10 +33,18 @@ public class OrderServer {
              ObjectInputStream in = new ObjectInputStream(socket.getInputStream())
         ) {
             //bude Order
-            Object obj = in.readObject();
+            Order order = (Order) in.readObject();
+            OrderResponse response;
 
+            if (!CATALOG.containsKey(order.itemName())) {
+                response = new OrderResponse("ERROR: Produkt nenalezen!", 0);
+            } else if (order.qty() < 1) {
+                response = new OrderResponse("ERROR: Mnozstvi nesmi byt mensi nez 1!", 0);
+            } else {
+                response = new OrderResponse(order.itemName(), (int) (CATALOG.get(order.itemName()) * order.qty()));
+            }
 
-            CATALOG.get("jmeno"); // vrati cenu
+            out.writeObject(response);
 
         } catch (Exception e) {
             System.out.println("Client error: " + e.getMessage());
