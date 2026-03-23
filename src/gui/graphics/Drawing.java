@@ -37,7 +37,7 @@ class Canvas extends JPanel {
 //        drawBasics(g2);
 //        drawShapes(g2);
 //        drawArrow(g2, 100, 100, 500, 200, 40);
-        drawHeh(g2);
+        drawCross(g2, 100, 100, 100);
     }
 
     void drawBasics(Graphics2D g2){
@@ -108,51 +108,18 @@ class Canvas extends JPanel {
         g.draw(new Line2D.Double(x2, y2, x2 - vArrowX - kx, y2 - vArrowY - ky));
     }
 
-    void drawStar(Graphics2D g, double centerX, double centerY, double outerRadius, double innerRadius, int points) {
-        double angleIncrement = 2 * Math.PI / points;
-        double halfIncrement = angleIncrement / 2;
+    void drawCross(Graphics2D g, int x, int y, int len) {
+        Path2D cross = new Path2D.Double();
 
-        Path2D star = new Path2D.Double();
-        for (int i = 0; i < points; i++) {
-            double outerX = centerX + outerRadius * Math.cos(i * angleIncrement);
-            double outerY = centerY + outerRadius * Math.sin(i * angleIncrement);
+        cross.moveTo(x, y);
+        cross.lineTo(x+2*len, y+len);
+        cross.lineTo(x+2*len, y);
+        cross.lineTo(x, y+len);
+        cross.closePath();
+        g.setColor(Color.BLUE);
+        g.draw(cross);
 
-            double innerX = centerX + innerRadius * Math.cos(i * angleIncrement + halfIncrement);
-            double innerY = centerY + innerRadius * Math.sin(i * angleIncrement + halfIncrement);
 
-            if (i == 0) {
-                star.moveTo(outerX, outerY);
-            } else {
-                star.lineTo(outerX, outerY);
-            }
-            star.lineTo(innerX, innerY);
-
-        }
-        star.closePath();
-        g.draw(star);
     }
-    void drawHeh (Graphics2D g2) {
-        int x = 200;
-        int y = 200;
-        int len = 50;
-        Path2D shape = new Path2D.Double();
 
-        shape.moveTo(x, y);
-        shape.lineTo(x + len, y + len);
-        shape.lineTo(x + len, y - len);
-
-        shape.moveTo(x, y);
-        shape.lineTo(x + len, y - len);
-        shape.lineTo(x - len, y - len);
-
-        shape.moveTo(x, y);
-        shape.lineTo(x - len, y - len);
-        shape.lineTo(x - len, y + len);
-
-        shape.moveTo(x, y);
-        shape.lineTo(x - len, y + len);
-        shape.lineTo(x + len, y + len);
-//        shape.closePath();
-        g2.draw(shape);
-    }
 }

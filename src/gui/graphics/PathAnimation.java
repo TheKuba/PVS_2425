@@ -13,6 +13,7 @@ public class PathAnimation extends JPanel {
     private double angle = 0;
 
     private double dx = 3;
+    private double dy = 2;
 
     public PathAnimation() {
 
@@ -20,7 +21,7 @@ public class PathAnimation extends JPanel {
 
         createShape();
 
-        Timer timer = new Timer(16, e -> updateAnimation());
+        Timer timer = new Timer(8, e -> updateAnimation());
         timer.start();
     }
 
@@ -37,15 +38,19 @@ public class PathAnimation extends JPanel {
     private void updateAnimation() {
 
         // pohyb
-        x += dx;
-
+       x += dx;
+       dy += dx;
         // bounce - uz zname
         if (x > getWidth() - 50 || x < 50) {
             dx = -dx;
         }
 
+        if (y > getHeight() - 50 || y < 50) {
+            dy = -dy;
+        }
+
         // rotace
-        angle += 0.05;
+        angle += 0.10;
 
         repaint();
     }
