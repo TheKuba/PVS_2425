@@ -1,5 +1,6 @@
 package streaming;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,6 +9,7 @@ import java.util.stream.Stream;
 
 public class Basics {
     public static void main(String[] args) {
+
         ArrayList<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             numbers.add((int)(Math.random() * 100));

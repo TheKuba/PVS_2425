@@ -38,7 +38,7 @@ public class MovieLambda {
             double avgRating = movies.stream()
                     .filter(movie -> movie.genre.equals("Horror"))
                     .distinct()
-                    .mapToDouble(movie -> movie.rating)
+                    .mapToDouble(Movie::getRating)
                     .average()
                     .orElse(0);
 
